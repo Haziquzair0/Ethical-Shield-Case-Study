@@ -224,6 +224,8 @@ _See Table 2 and Appendix for full evidence and screenshots._
 ### Appendix C: Screenshots & Evidence
 
 - **Figure 1:** ZAP Scan Summary (see attached screenshot)
+![image](https://github.com/user-attachments/assets/3c0e9c4a-e587-4c55-bd28-983e1d457da7)
+
 - **Figure 2:** Application Error Stack Trace (see attached screenshot)
 - **Additional:** Raw ZAP report (see attached file)
 
