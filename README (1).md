@@ -1,3 +1,20 @@
+# Web Application Security Case Study Report
+
+---
+
+## Group Name
+**Ethical Shield**
+
+---
+
+## Group Member and Assigned Task
+
+| Member         | Matric No | Task Assignment                                                                 |
+|----------------|-----------|-------------------------------------------------------------------------------|
+| Haziq Uzair    | 21xxx     | Project Lead, Report Compilation, Vulnerability Identification                |
+| Izzul Amirr    | 2118091   | Web Application Testing, Vulnerability Evaluation, Screenshots & Evidence     |
+| Johan Adam     | 2116387   | Web Application Testing, Vulnerability Evaluation, Weekly Progress Report     |
+
 ---
 
 ## Scan Details
