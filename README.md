@@ -222,27 +222,21 @@ _See Table 2 and Appendix for full evidence and screenshots._
 - **Figure 1:** ZAP Scan Summary (see attached screenshot)
 ![image](https://github.com/user-attachments/assets/3c0e9c4a-e587-4c55-bd28-983e1d457da7)
 
-- **Figure 2:** Application Error Stack Trace (see attached screenshot)
 - **Additional:** Raw ZAP report (see attached file)
+[2025-05-24-ZAP-Report-TravellingAdminpage.html](2025-05-24-ZAP-Report-TravellingAdminpage.html)
 
-### Appendix D: Raw Data and Metadata
 
-- Full ZAP scan output and log files (available upon request)
-- Metadata: Scan timestamp, tool version, configuration files
-
----
 
 ## References
 
 1. [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)
 2. [ZAP by Checkmarx](https://www.zaproxy.org/)
 3. [OWASP Top 10: A05 Security Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)
-4. [Yii2 Security Guide](https://www.yiiframework.com/doc/guide/2.0/en/security-authorization)
-5. [RFC 6797: HTTP Strict Transport Security (HSTS)](https://tools.ietf.org/html/rfc6797)
-6. [CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)
-7. [Mozilla Web Security Guidelines](https://infosec.mozilla.org/guidelines/web_security)
-8. [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-9. [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
+4. [RFC 6797: HTTP Strict Transport Security (HSTS)](https://tools.ietf.org/html/rfc6797)
+5. [CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)
+6. [Mozilla Web Security Guidelines](https://infosec.mozilla.org/guidelines/web_security)
+7. [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
+8. [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
 
 ---
 
