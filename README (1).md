@@ -21,9 +21,9 @@
 
 | Field                  | Value                                                        |
 |------------------------|-------------------------------------------------------------|
-| **Website**            | Travelingadmin page                                         |
+| **Website**            | Traveling page                                         |
 | **Prepared By**        | Ethical Shield Group                                        |
-| **Date of Scan**       | 2025-06-28                                                  |
+| **Date of Scan**       | 2025-06-29                                                 |
 | **Scan Type**          | Automated Security Assessment (ZAP)                         |
 | **Scan Duration**      | 1 hour 15 minutes                                           |
 
@@ -67,12 +67,12 @@ See [References Section](#references) below.
 |--------------|-------------|------------------------------------------|
 | Critical     | 0           | N/A                                      |
 | High         | 0           | N/A                                      |
-| Medium       | 3           | CSP Header Not Set                       |
-| Low          | 3           | Strict-Transport-Security Header Not Set |
-| Info         | 3           | Suspicious Comments                      |
+| Medium       | 3           | Missing Anti-clickjacking Header                       |
+| Low          | 6          | Application Error Disclosure |
+| Info         | 5           | Information Disclosure                    |
 
 **Key Takeaway:**  
-The security scan of the Travelling Admin Portal revealed several medium and low-severity vulnerabilities, including missing security headers, absence of CSRF protection, and information disclosure. No critical or high-risk issues were detected. Immediate remediation should focus on implementing missing security headers and CSRF protections, while regular reviews and developer training are recommended to maintain a robust security posture. All findings are supported by evidence and mapped to OWASP standards.
+The scan identified 3 medium-risk issues that required attention before the risk became bigger. The scan also identified 11 low/informational risk that shows an overlook on security practices .
 
 ---
 
@@ -81,9 +81,9 @@ The security scan of the Travelling Admin Portal revealed several medium and low
 
 | Vulnerability                                      | Risk Level    | Confidence | Affected URL/Asset                                  | Example Evidence                                   | CWE ID  | WASC ID |
 |----------------------------------------------------|--------------|------------|-----------------------------------------------------|---------------------------------------------------|---------|---------|
-| Content Security Policy (CSP) Header Not Set       | Medium       | High       | `https://ifisonline.iium.edu.my/sitemap.xml`        | ZAP alert, missing CSP header in response         | CWE-693 | WASC-15 |
-| Missing Anti-clickjacking Header                   | Medium       | Medium     | `http://ifisonline.iium.edu.my/travellingadmin`     | No X-Frame-Options or CSP frame-ancestors present | CWE-1021| WASC-15 |
-| Absence of Anti-CSRF Tokens                        | Medium       | Low        | `https://ifisonline.iium.edu.my/travellingadmin/site/login` | Missing CSRF token in login form                  | CWE-352 | WASC-9  |
+| Content Security Policy (CSP) Header Not Set       | Medium       | High       | `https://ifisonline.iium.edu.my/hr-api`        | ZAP alert, missing CSP header in response         | CWE-693 | WASC-15 |
+| Missing Anti-clickjacking Header                   | Medium       | Medium     | `http://ifisonline.iium.edu.my/travelling`     | No X-Frame-Options or CSP frame-ancestors present | CWE-1021| WASC-15 |
+| Cross-Domain Misconfiguration                     | Medium       | Medium        | `https://style.iium.edu.my/css/iium.css` | The CORS misconfiguration on the web server permits cross-domain read requests from arbitrary third party domains, using unauthenticated APIs on this domain                 | CWE-352 | WASC-9  |
 | Strict-Transport-Security Header Not Set           | Low          | High       | `https://ifisonline.iium.edu.my/travellingadmin/css/site.css` | No HSTS header in response                        | CWE-319 | WASC-15 |
 | Application Error Disclosure                       | Low          | Medium     | `https://ifisonline.iium.edu.my/travellingadmin/site/contact` | Stack trace visible on error page                 | CWE-209 | WASC-13 |
 | X-Content-Type-Options Header Missing              | Low          | Medium     | `https://ifisonline.iium.edu.my/travellingadmin/css/site.css` | Header missing in response                        | CWE-16  | WASC-15 |
