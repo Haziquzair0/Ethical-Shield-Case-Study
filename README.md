@@ -10,7 +10,7 @@
 ## ii. Group Member and Assigned Task
 
 | Member         | Matric No |Task Assignment                                                                 |
-|----------------|---------------------------------------------------------------------------------|
+|----------------|-----------|----------------------------------------------------------------------|
 | Haziq uzair    |21xxx | Project Lead, Report Compilation, Vulnerability Identification                   |
 | Izzul amirr    |2118091 | Web Application Testing, Vulnerability Evaluation, Screenshots & Evidence        |
 | Johan Adam    |2116387 | Web Application Testing, Vulnerability Evaluation, Screenshots & Evidence        |
