@@ -1,24 +1,13 @@
-# Web Application Security Report
+# Web Application Security Case Study Report
 
 ---
 
-## i. Group Name
+## Group Name
 **Ethical Shield**
 
 ---
 
-## ii. Group Member Details
-
-| Name                | Matric No   |
-|---------------------|-------------|
-| Haziquzair          | 2021123456  |
-| Izzulamirr          | 2021654321  |
-| Aisyah Rahman       | 2021543210  |
-| Amirul Hakim        | 2021765432  |
-
----
-
-## iii. Assigned Tasks for Each Group Member
+## ii. Group Member and Assigned Task
 
 | Member         | Task Assignment                                                                 |
 |----------------|---------------------------------------------------------------------------------|
