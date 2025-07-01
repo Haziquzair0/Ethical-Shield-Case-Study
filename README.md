@@ -79,17 +79,17 @@ The security scan of the Travelling Admin Portal revealed several medium and low
 
 ## Identify Vulnerabilities
 
-| Vulnerability                                      | Risk Level    | Confidence | Affected URL/Asset                                  | Example Evidence                                   |
-|----------------------------------------------------|--------------|------------|-----------------------------------------------------|---------------------------------------------------|
-| Content Security Policy (CSP) Header Not Set       | Medium       | High       | `https://ifisonline.iium.edu.my/sitemap.xml`        | ZAP alert, missing CSP header in response         |
-| Missing Anti-clickjacking Header                   | Medium       | Medium     | `http://ifisonline.iium.edu.my/travellingadmin`     | No X-Frame-Options or CSP frame-ancestors present |
-| Absence of Anti-CSRF Tokens                        | Medium       | Low        | `https://ifisonline.iium.edu.my/travellingadmin/site/login` | Missing CSRF token in login form                  |
-| Strict-Transport-Security Header Not Set           | Low          | High       | `https://ifisonline.iium.edu.my/travellingadmin/css/site.css` | No HSTS header in response                        |
-| Application Error Disclosure                       | Low          | Medium     | `https://ifisonline.iium.edu.my/travellingadmin/site/contact` | Stack trace visible on error page                 |
-| X-Content-Type-Options Header Missing              | Low          | Medium     | `https://ifisonline.iium.edu.my/travellingadmin/css/site.css` | Header missing in response                        |
-| Information Disclosure - Suspicious Comments       | Info         | Low        | `https://ifisonline.iium.edu.my/travellingadmin/assets/af19f097/yii.js` | Sensitive comments in JS file                     |
-| Session Management Response Exposed                | Info         | Medium     | `http://ifisonline.iium.edu.my/travellingadmin`     | Session tokens visible in responses               |
-| Authentication Request Identified                  | Info         | High       | `https://ifisonline.iium.edu.my/travellingadmin/site/login` | Login request visible in network trace            |
+| Vulnerability                                      | Risk Level    | Confidence | Affected URL/Asset                                  | Example Evidence                                   | CWE ID  | WASC ID |
+|----------------------------------------------------|--------------|------------|-----------------------------------------------------|---------------------------------------------------|---------|---------|
+| Content Security Policy (CSP) Header Not Set       | Medium       | High       | `https://ifisonline.iium.edu.my/sitemap.xml`        | ZAP alert, missing CSP header in response         | CWE-693 | WASC-15 |
+| Missing Anti-clickjacking Header                   | Medium       | Medium     | `http://ifisonline.iium.edu.my/travellingadmin`     | No X-Frame-Options or CSP frame-ancestors present | CWE-1021| WASC-15 |
+| Absence of Anti-CSRF Tokens                        | Medium       | Low        | `https://ifisonline.iium.edu.my/travellingadmin/site/login` | Missing CSRF token in login form                  | CWE-352 | WASC-9  |
+| Strict-Transport-Security Header Not Set           | Low          | High       | `https://ifisonline.iium.edu.my/travellingadmin/css/site.css` | No HSTS header in response                        | CWE-319 | WASC-15 |
+| Application Error Disclosure                       | Low          | Medium     | `https://ifisonline.iium.edu.my/travellingadmin/site/contact` | Stack trace visible on error page                 | CWE-209 | WASC-13 |
+| X-Content-Type-Options Header Missing              | Low          | Medium     | `https://ifisonline.iium.edu.my/travellingadmin/css/site.css` | Header missing in response                        | CWE-16  | WASC-15 |
+| Information Disclosure - Suspicious Comments       | Info         | Low        | `https://ifisonline.iium.edu.my/travellingadmin/assets/af19f097/yii.js` | Sensitive comments in JS file                     | CWE-615 | WASC-13 |
+| Session Management Response Exposed                | Info         | Medium     | `http://ifisonline.iium.edu.my/travellingadmin`     | Session tokens visible in responses               | CWE-384 | WASC-38 |
+| Authentication Request Identified                  | Info         | High       | `https://ifisonline.iium.edu.my/travellingadmin/site/login` | Login request visible in network trace            | CWE-287 | WASC-1  |
 
 _See Table 2 and Appendix for full evidence and screenshots._
 
@@ -99,6 +99,8 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ### 1. Content Security Policy (CSP) Header Not Set
 - **Severity:** Medium  
+- **CWE ID:** CWE-693  
+- **WASC ID:** WASC-15  
 - **Description:** Absence of CSP header increases risk of XSS and data injection.  
 - **Affected URLs:** `https://ifisonline.iium.edu.my/sitemap.xml` and others  
 - **Business Impact:** Attackers could inject scripts, potentially compromising user data and trust.  
@@ -110,6 +112,8 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ### 2. Missing Anti-clickjacking Header
 - **Severity:** Medium  
+- **CWE ID:** CWE-1021  
+- **WASC ID:** WASC-15  
 - **Description:** Allows framing, making the site vulnerable to clickjacking attacks.  
 - **Affected URLs:** `http://ifisonline.iium.edu.my/travellingadmin`  
 - **Business Impact:** Attackers could trick users into clicking on hidden UI elements, leading to unauthorized actions.  
@@ -118,6 +122,8 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ### 3. Absence of Anti-CSRF Tokens
 - **Severity:** Medium  
+- **CWE ID:** CWE-352  
+- **WASC ID:** WASC-9  
 - **Description:** Enables attackers to perform actions as authenticated users via CSRF.  
 - **Affected URLs:** `https://ifisonline.iium.edu.my/travellingadmin/site/login`  
 - **Business Impact:** Unauthorized transactions, potential data loss or corruption.  
@@ -126,6 +132,8 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ### 4. Strict-Transport-Security Header Not Set
 - **Severity:** Low  
+- **CWE ID:** CWE-319  
+- **WASC ID:** WASC-15  
 - **Description:** No HSTS header, exposing users to SSL stripping.  
 - **Affected URLs:** `https://ifisonline.iium.edu.my/travellingadmin/css/site.css`  
 - **Business Impact:** Users might be redirected to insecure (HTTP) versions of the site.  
@@ -137,6 +145,8 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ### 5. Application Error Disclosure
 - **Severity:** Low  
+- **CWE ID:** CWE-209  
+- **WASC ID:** WASC-13  
 - **Description:** Reveals stack traces and internal paths to users.  
 - **Affected URLs:** `https://ifisonline.iium.edu.my/travellingadmin/site/contact`  
 - **Business Impact:** Leaked technical details can be used for further attacks.  
@@ -145,6 +155,8 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ### 6. X-Content-Type-Options Header Missing
 - **Severity:** Low  
+- **CWE ID:** CWE-16  
+- **WASC ID:** WASC-15  
 - **Description:** Lack of this header allows MIME sniffing.  
 - **Affected URLs:** `https://ifisonline.iium.edu.my/travellingadmin/css/site.css`  
 - **Business Impact:** Potential for content type confusion attacks.  
@@ -156,6 +168,8 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ### 7. Information Disclosure - Suspicious Comments
 - **Severity:** Info  
+- **CWE ID:** CWE-615  
+- **WASC ID:** WASC-13  
 - **Description:** Client-side code contains comments that may leak sensitive logic.  
 - **Affected URLs:** `https://ifisonline.iium.edu.my/travellingadmin/assets/af19f097/yii.js`  
 - **Business Impact:** Attackers may gain insight into application logic or hidden features.  
@@ -164,6 +178,8 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ### 8. Session Management Response Exposed
 - **Severity:** Info  
+- **CWE ID:** CWE-384  
+- **WASC ID:** WASC-38  
 - **Description:** Session tokens visible in some HTTP responses.  
 - **Affected URLs:** `http://ifisonline.iium.edu.my/travellingadmin`  
 - **Business Impact:** Informational only; may assist attackers in identifying session handling.  
@@ -172,6 +188,8 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ### 9. Authentication Request Identified
 - **Severity:** Info  
+- **CWE ID:** CWE-287  
+- **WASC ID:** WASC-1  
 - **Description:** Authentication requests visible in network trace.  
 - **Affected URLs:** `https://ifisonline.iium.edu.my/travellingadmin/site/login`  
 - **Business Impact:** Informational only.  
