@@ -21,6 +21,7 @@
 
 | Field                  | Value                                                        |
 |------------------------|-------------------------------------------------------------|
+| **Website**            | Travelingadmin page                                         |
 | **Prepared By**        | Ethical Shield Group                                        |
 | **Date of Scan**       | 2025-06-28                                                  |
 | **Scan Type**          | Automated Security Assessment (ZAP)                         |
