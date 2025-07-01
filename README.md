@@ -2,12 +2,12 @@
 
 ---
 
-## i. Group Name
+## Group Name
 **Ethical Shield**
 
 ---
 
-## ii. Group Member and Assigned Task
+## Group Member and Assigned Task
 
 | Member         | Matric No | Task Assignment                                                                 |
 |----------------|-----------|-------------------------------------------------------------------------------|
@@ -17,7 +17,7 @@
 
 ---
 
-## iii. Scan Details
+## Scan Details
 
 | Field                  | Value                                                        |
 |------------------------|-------------------------------------------------------------|
@@ -59,7 +59,7 @@ See [References Section](#references) below.
 
 ---
 
-## v. Executive Summary
+## Executive Summary
 
 ### Metric Values
 
@@ -76,13 +76,8 @@ The security scan of the Travelling Admin Portal revealed several medium and low
 
 ---
 
-## vi. Brief Description of the Assigned Web Application and Objectives of the Case Study
 
-The assigned web application is [_Travelling Admin Portal_](https://ifisonline.iium.edu.my/travellingadmin/), a Yii-based PHP web application designed to manage travel requests and administration for IIUM staff. The objective of this security assessment is to identify vulnerabilities, evaluate their risks and potential business impact, and recommend actionable mitigation strategies.
-
----
-
-## vii. Identify Vulnerabilities
+## Identify Vulnerabilities
 
 | Vulnerability                                      | Risk Level    | Confidence | Affected URL/Asset                                  | Example Evidence                                   |
 |----------------------------------------------------|--------------|------------|-----------------------------------------------------|---------------------------------------------------|
@@ -100,7 +95,7 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ---
 
-## viii. Evaluate Vulnerabilities
+## Evaluate Vulnerabilities
 
 ### 1. Content Security Policy (CSP) Header Not Set
 - **Severity:** Medium  
@@ -185,7 +180,7 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ---
 
-## ix. Prevention & Recommendations
+## Prevention & Recommendations
 
 ### Prioritized Action Plan
 
@@ -203,7 +198,7 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ---
 
-## x. Appendices
+## Appendices
 
 ### Appendix A: Scan Settings
 
