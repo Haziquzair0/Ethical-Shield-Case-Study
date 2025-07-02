@@ -21,7 +21,7 @@
 
 | Field                  | Value                                                        |
 |------------------------|-------------------------------------------------------------|
-| **Website**            | Travelingadmin page                                         |
+| **Website**            | http://ifisonline.iium.edu.my/travellingadmin               |
 | **Prepared By**        | Ethical Shield Group                                        |
 | **Date of Scan**       | 2025-05-24                                                 |
 | **Scan Type**          | Automated Security Assessment (ZAP)                         |
@@ -320,7 +320,7 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 | Field                  | Value                                                        |
 |------------------------|-------------------------------------------------------------|
-| **Website**            | Travelling page                                         |
+| **Website**            | http://ifisonline.iium.edu.my/travelling                    |
 | **Prepared By**        | Ethical Shield Group                                        |
 | **Date of Scan**       | 2025-05-26                                                  |
 | **Scan Type**          | Automated Security Assessment (ZAP)                         |
