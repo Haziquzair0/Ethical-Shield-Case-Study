@@ -23,7 +23,7 @@
 |------------------------|-------------------------------------------------------------|
 | **Website**            | Travelingadmin page                                         |
 | **Prepared By**        | Ethical Shield Group                                        |
-| **Date of Scan**       | 2025-06-28                                                  |
+| **Date of Scan**       | 2025-05-24                                                 |
 | **Scan Type**          | Automated Security Assessment (ZAP)                         |
 | **Scan Duration**      | 1 hour 15 minutes                                           |
 
@@ -320,9 +320,9 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 | Field                  | Value                                                        |
 |------------------------|-------------------------------------------------------------|
-| **Website**            | Traveling page                                         |
+| **Website**            | Travelling page                                         |
 | **Prepared By**        | Ethical Shield Group                                        |
-| **Date of Scan**       | 2025-06-28                                                  |
+| **Date of Scan**       | 2025-05-26                                                  |
 | **Scan Type**          | Automated Security Assessment (ZAP)                         |
 | **Scan Duration**      | 1 hour 15 minutes                                           |
 
