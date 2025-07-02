@@ -316,7 +316,175 @@ _See Table 2 and Appendix for full evidence and screenshots._
 8. [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
 
 ---
+# Scan Details
 
-**_End of Report_**
+| Field                  | Value                                                        |
+|------------------------|-------------------------------------------------------------|
+| **Website**            | Traveling page                                         |
+| **Prepared By**        | Ethical Shield Group                                        |
+| **Date of Scan**       | 2025-06-28                                                  |
+| **Scan Type**          | Automated Security Assessment (ZAP)                         |
+| **Scan Duration**      | 1 hour 15 minutes                                           |
+
+---
+
+## iv. Table of Contents
+
+1. [Group Name](#i-group-name)
+2. [Group Member Details](#ii-group-member-and-assigned-task)
+3. [Scan Details](#iii-scan-details)
+4. [Table of Contents, List of Figures, List of Tables & References](#iv-table-of-contents)
+    - [List of Figures](#list-of-figures)
+    - [List of Tables](#list-of-tables)
+    - [References](#references)
+5. [Executive Summary](#v-executive-summary)
+6. [Brief Description & Objectives](#vi-brief-description-of-the-assigned-web-application-and-objectives-of-the-case-study)
+7. [Identified Vulnerabilities](#vii-identify-vulnerabilities)
+8. [Evaluation of Vulnerabilities](#viii-evaluate-vulnerabilities)
+9. [Prevention & Recommendations](#ix-prevent-vulnerabilities)
+10. [Appendices](#x-appendices)
+
+### List of Figures
+- **Figure 1:** ZAP Scan Summary Screenshot
+- **Figure 2:** Application Error Disclosure Evidence
+
+### List of Tables
+- **Table 1:** Group Members and Assigned Tasks
+- **Table 2:** Vulnerability Summary Table
+- **Table 3:** Risk Level Metrics Overview
+
+### References
+See [References Section](#references) below.
+
+---
+
+## Executive Summary
+
+### Metric Values
+
+| Risk Level   | Issues Found | Example Vulnerability                    |
+|--------------|-------------|------------------------------------------|
+| Critical     | 0           | N/A                                      |
+| High         | 0           | N/A                                      |
+ Medium        | 3           | CSP Header Not Set, CORS, Clickjacking       |
+| Low          | 6           | HSTS, Server Version, JS Inclusion, Timestamps, etc. |
+| Info         | 5           | Suspicious Comments, Cache, User Agent Fuzzer, etc.   |
+
+**Key Takeaway:**  
+The security scan of the Travelling Admin Portal revealed several medium and low-severity vulnerabilities, including missing security headers, absence of CSRF protection, and information disclosure. No critical or high-risk issues were detected. Immediate remediation should focus on implementing missing security headers and CSRF protections, while regular reviews and developer training are recommended to maintain a robust security posture. All findings are supported by evidence and mapped to OWASP standards.
+
+---
+
+
+
+## Identify Vulnerabilities
+
+| Vulnerability                                                      | Risk Level      | Count | Example Evidence / Affected URL                                 | CWE ID  | WASC ID |
+|--------------------------------------------------------------------|-----------------|-------|-----------------------------------------------------------------|---------|---------|
+| Content Security Policy (CSP) Header Not Set                       | Medium          | 6     | Missing CSP header in response                                  | CWE-693 | WASC-15 |
+| Cross-Domain Misconfiguration (CORS)                               | Medium          | 23    | `Access-Control-Allow-Origin: *`                                | CWE-942 | WASC-14 |
+| Missing Anti-clickjacking Header                                   | Medium          | 3     | No X-Frame-Options or CSP frame-ancestors present               | CWE-1021| WASC-15 |
+| Application Error Disclosure                                       | Low             | 1     | Error message with file path                                    | CWE-209 | WASC-13 |
+| Cross-Domain JavaScript Source File Inclusion                      | Low             | 12    | External JS loaded from third-party domain                      | CWE-829 | WASC-14 |
+| Server Leaks Version Information via "Server" HTTP Header          | Low             | 22    | `Server: Apache/2.4.52 (Ubuntu)`                                | CWE-200 | WASC-13 |
+| Strict-Transport-Security Header Not Set                           | Low             | 34    | No HSTS header in response                                      | CWE-319 | WASC-15 |
+| Timestamp Disclosure - Unix                                        | Low             | 206   | Unix timestamp in response                                      | CWE-200 | WASC-13 |
+| X-Content-Type-Options Header Missing                              | Low             | 28    | Header missing in response                                      | CWE-16  | WASC-15 |
+| Information Disclosure - Suspicious Comments                       | Informational   | 7     | Sensitive comments in JS file                                   | CWE-615 | WASC-13 |
+| Modern Web Application                                             | Informational   | 3     | Detected modern JS frameworks                                   | N/A     | N/A     |
+| Re-examine Cache-control Directives                                | Informational   | 3     | Cache-control headers may be misconfigured                      | CWE-525 | WASC-13 |
+| Retrieved from Cache                                               | Informational   | 2     | Resource retrieved from browser cache                           | CWE-525 | WASC-13 |
+| User Agent Fuzzer                                                  | Informational   | 12    | Responses to unusual user agents                                | N/A     | N/A     |
+
+---
+
+## Evaluate Vulnerabilities
+
+### 1. Content Security Policy (CSP) Header Not Set
+- **Severity:** Medium  
+- **Count:** 6  
+- **Description:** Absence of CSP header increases risk of XSS and data injection.  
+- **Recommendation:** Add a strong CSP header to all responses.
+
+### 2. Cross-Domain Misconfiguration (CORS)
+- **Severity:** Medium  
+- **Count:** 23  
+- **Description:** Permissive CORS settings (`Access-Control-Allow-Origin: *`) can expose sensitive data to untrusted domains.  
+- **Recommendation:** Restrict CORS to trusted domains only.
+
+### 3. Missing Anti-clickjacking Header
+- **Severity:** Medium  
+- **Count:** 3  
+- **Description:** Lack of X-Frame-Options or CSP `frame-ancestors` allows clickjacking.  
+- **Recommendation:** Add `X-Frame-Options: DENY` or use CSP `frame-ancestors 'none'`.
+
+### 4. Application Error Disclosure
+- **Severity:** Low  
+- **Count:** 1  
+- **Description:** Error messages reveal internal information.  
+- **Recommendation:** Show only generic error messages to users.
+
+### 5. Cross-Domain JavaScript Source File Inclusion
+- **Severity:** Low  
+- **Count:** 12  
+- **Description:** Loading JS from third-party domains can introduce supply chain risks.  
+- **Recommendation:** Only include scripts from trusted, verified sources.
+
+### 6. Server Leaks Version Information via "Server" HTTP Header
+- **Severity:** Low  
+- **Count:** 22  
+- **Description:** Server version info in HTTP headers can help attackers target known exploits.  
+- **Recommendation:** Suppress or genericize the `Server` header.
+
+### 7. Strict-Transport-Security Header Not Set
+- **Severity:** Low  
+- **Count:** 34  
+- **Description:** Without HSTS, browsers may connect over HTTP, exposing users to MITM attacks.  
+- **Recommendation:** Add `Strict-Transport-Security` header.
+
+### 8. Timestamp Disclosure - Unix
+- **Severity:** Low  
+- **Count:** 206  
+- **Description:** Unix timestamps in responses can reveal system activity or deployment schedules.  
+- **Recommendation:** Avoid exposing timestamps unless necessary.
+
+### 9. X-Content-Type-Options Header Missing
+- **Severity:** Low  
+- **Count:** 28  
+- **Description:** Without this header, browsers may MIME-sniff responses, leading to XSS.  
+- **Recommendation:** Add `X-Content-Type-Options: nosniff` to all responses.
+
+### 10. Information Disclosure - Suspicious Comments
+- **Severity:** Informational  
+- **Count:** 7  
+- **Description:** Comments in client-side code may reveal sensitive logic.  
+- **Recommendation:** Remove all sensitive comments from production code.
+
+### 11. Modern Web Application
+- **Severity:** Informational  
+- **Count:** 3  
+- **Description:** Detected use of modern JS frameworks.  
+- **Recommendation:** Ensure frameworks are kept up to date and securely configured.
+
+### 12. Re-examine Cache-control Directives
+- **Severity:** Informational  
+- **Count:** 3  
+- **Description:** Cache-control headers may be misconfigured, risking sensitive data exposure.  
+- **Recommendation:** Review and configure cache-control headers appropriately.
+
+### 13. Retrieved from Cache
+- **Severity:** Informational  
+- **Count:** 2  
+- **Description:** Resources retrieved from browser cache may not reflect latest security updates.  
+- **Recommendation:** Use cache-busting techniques and review cache settings.
+
+### 14. User Agent Fuzzer
+- **Severity:** Informational  
+- **Count:** 12  
+- **Description:** Application responded to unusual user agents, which may indicate inconsistent behavior.  
+- **Recommendation:** Ensure consistent security controls regardless of user agent.
+
+---
+
 
 ---
