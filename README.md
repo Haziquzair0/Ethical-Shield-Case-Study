@@ -346,7 +346,7 @@ _See Table 2 and Appendix for full evidence and screenshots._
 
 ### List of Figures
 - **Figure 1:** ZAP Scan Summary Screenshot
-- **Figure 2:** Application Error Disclosure Evidence
+
 
 ### List of Tables
 - **Table 1:** Group Members and Assigned Tasks
@@ -371,7 +371,7 @@ See [References Section](#references) below.
 | Info         | 5           | Suspicious Comments, Cache, User Agent Fuzzer, etc.   |
 
 **Key Takeaway:**  
-The security scan of the Travelling Admin Portal revealed several medium and low-severity vulnerabilities, including missing security headers, absence of CSRF protection, and information disclosure. No critical or high-risk issues were detected. Immediate remediation should focus on implementing missing security headers and CSRF protections, while regular reviews and developer training are recommended to maintain a robust security posture. All findings are supported by evidence and mapped to OWASP standards.
+The security scan of the Travelling  Portal revealed several medium and low-severity vulnerabilities, including missing security headers, absence of CSRF protection, and information disclosure. No critical or high-risk issues were detected. Immediate remediation should focus on implementing missing security headers and CSRF protections, while regular reviews and developer training are recommended to maintain a robust security posture. All findings are supported by evidence and mapped to OWASP standards.
 
 ---
 
