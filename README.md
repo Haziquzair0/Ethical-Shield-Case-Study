@@ -630,10 +630,7 @@ The security scan of the Travelling Admin Portal revealed several medium and low
 ### Appendix C: Screenshots & Evidence
 
 - **Figure 1:** ZAP Scan Summary Screenshot  
-  ![ZAP Scan Summary](https://github.com/user-attachments/assets/3c0e9c4a-e587-4c55-bd28-983e1d457da7)
-
-- **Figure 2:** Application Error Disclosure Evidence  
-  _Screenshot showing error message with file path or stack trace (see attached evidence)._
+  ![ZAP Scan Summary](https://github.com/user-attachments/assets/5503c37b-5419-4197-a01a-c77a7bf2b7b5)
 
 - **Additional Evidence:**  
   - [2025-05-24-ZAP-Report-TravellingAdminpage.html](2025-05-24-ZAP-Report-TravellingAdminpage.html) (full raw ZAP report)
