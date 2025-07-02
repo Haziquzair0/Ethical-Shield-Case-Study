@@ -402,89 +402,253 @@ The security scan of the Travelling Admin Portal revealed several medium and low
 
 ### 1. Content Security Policy (CSP) Header Not Set
 - **Severity:** Medium  
-- **Count:** 6  
+- **CWE ID:** CWE-693  
+- **WASC ID:** WASC-15  
 - **Description:** Absence of CSP header increases risk of XSS and data injection.  
-- **Recommendation:** Add a strong CSP header to all responses.
+- **Affected URLs:** Multiple endpoints missing CSP header (e.g., main pages, sitemap).  
+- **Business Impact:** Attackers could inject malicious scripts, leading to data theft or site defacement.  
+- **OWASP Reference:** [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)  
+- **Recommendation & Prevention Strategy:**  
+  - Add a strong CSP header to all responses.  
+  - Regularly review and update CSP as new resources are added.
 
 ### 2. Cross-Domain Misconfiguration (CORS)
 - **Severity:** Medium  
-- **Count:** 23  
+- **CWE ID:** CWE-942  
+- **WASC ID:** WASC-14  
 - **Description:** Permissive CORS settings (`Access-Control-Allow-Origin: *`) can expose sensitive data to untrusted domains.  
-- **Recommendation:** Restrict CORS to trusted domains only.
+- **Affected URLs:** Multiple endpoints with open CORS policy.  
+- **Business Impact:** Attackers may access data intended only for trusted domains, increasing the risk of data leakage.  
+- **OWASP Reference:** [OWASP CORS Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/CORS_Cheat_Sheet.html)  
+- **Recommendation & Prevention Strategy:**  
+  - Restrict CORS to trusted domains only.  
+  - Remove `Access-Control-Allow-Origin: *` unless absolutely necessary.  
+  - Regularly audit CORS settings.
 
 ### 3. Missing Anti-clickjacking Header
 - **Severity:** Medium  
-- **Count:** 3  
+- **CWE ID:** CWE-1021  
+- **WASC ID:** WASC-15  
 - **Description:** Lack of X-Frame-Options or CSP `frame-ancestors` allows clickjacking.  
-- **Recommendation:** Add `X-Frame-Options: DENY` or use CSP `frame-ancestors 'none'`.
+- **Affected URLs:** Pages missing X-Frame-Options or CSP frame-ancestors.  
+- **Business Impact:** Users could be tricked into performing unintended actions.  
+- **OWASP Reference:** [OWASP Clickjacking Defense Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html)  
+- **Recommendation & Prevention Strategy:**  
+  - Add `X-Frame-Options: DENY` or use CSP `frame-ancestors 'none'`.
 
 ### 4. Application Error Disclosure
 - **Severity:** Low  
-- **Count:** 1  
-- **Description:** Error messages reveal internal information.  
-- **Recommendation:** Show only generic error messages to users.
+- **CWE ID:** CWE-209  
+- **WASC ID:** WASC-13  
+- **Description:** Error messages reveal internal information such as file paths or stack traces.  
+- **Affected URLs:** Error pages and endpoints that display stack traces.  
+- **Business Impact:** Leaked technical details can be used for further attacks, such as SQL injection or privilege escalation.  
+- **OWASP Reference:** [OWASP Top 10: Security Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)  
+- **Recommendation & Prevention Strategy:**  
+  - Show only generic error messages to users.  
+  - Log detailed errors server-side for authorized personnel only.
 
 ### 5. Cross-Domain JavaScript Source File Inclusion
 - **Severity:** Low  
-- **Count:** 12  
-- **Description:** Loading JS from third-party domains can introduce supply chain risks.  
-- **Recommendation:** Only include scripts from trusted, verified sources.
+- **CWE ID:** CWE-829  
+- **WASC ID:** WASC-14  
+- **Description:** Loading JS from third-party domains can introduce supply chain risks if those sources are compromised.  
+- **Affected URLs:** Pages including external JS from third-party domains.  
+- **Business Impact:** Malicious scripts could be injected if third-party sources are compromised.  
+- **OWASP Reference:** [OWASP A08:2021 Software and Data Integrity Failures](https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/)  
+- **Recommendation & Prevention Strategy:**  
+  - Only include scripts from trusted, verified sources.  
+  - Regularly review and update third-party dependencies.
 
 ### 6. Server Leaks Version Information via "Server" HTTP Header
 - **Severity:** Low  
-- **Count:** 22  
+- **CWE ID:** CWE-200  
+- **WASC ID:** WASC-13  
 - **Description:** Server version info in HTTP headers can help attackers target known exploits.  
-- **Recommendation:** Suppress or genericize the `Server` header.
+- **Affected URLs:** All endpoints returning detailed Server headers.  
+- **Business Impact:** Attackers may use version info to target known exploits.  
+- **OWASP Reference:** [OWASP Top 10: Security Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)  
+- **Recommendation & Prevention Strategy:**  
+  - Suppress or genericize the `Server` header.
 
 ### 7. Strict-Transport-Security Header Not Set
 - **Severity:** Low  
-- **Count:** 34  
+- **CWE ID:** CWE-319  
+- **WASC ID:** WASC-15  
 - **Description:** Without HSTS, browsers may connect over HTTP, exposing users to MITM attacks.  
-- **Recommendation:** Add `Strict-Transport-Security` header.
+- **Affected URLs:** HTTPS endpoints missing HSTS header.  
+- **Business Impact:** Sensitive data could be intercepted.  
+- **OWASP Reference:** [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)  
+- **Recommendation & Prevention Strategy:**  
+  - Add `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload` header.
 
 ### 8. Timestamp Disclosure - Unix
 - **Severity:** Low  
-- **Count:** 206  
+- **CWE ID:** CWE-200  
+- **WASC ID:** WASC-13  
 - **Description:** Unix timestamps in responses can reveal system activity or deployment schedules.  
-- **Recommendation:** Avoid exposing timestamps unless necessary.
+- **Affected URLs:** Endpoints returning Unix timestamps in responses.  
+- **Business Impact:** May aid attackers in timing attacks or understanding system behavior.  
+- **OWASP Reference:** [OWASP Top 10: Security Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)  
+- **Recommendation & Prevention Strategy:**  
+  - Avoid exposing timestamps in responses unless necessary.
 
 ### 9. X-Content-Type-Options Header Missing
 - **Severity:** Low  
-- **Count:** 28  
+- **CWE ID:** CWE-16  
+- **WASC ID:** WASC-15  
 - **Description:** Without this header, browsers may MIME-sniff responses, leading to XSS.  
-- **Recommendation:** Add `X-Content-Type-Options: nosniff` to all responses.
+- **Affected URLs:** Endpoints missing X-Content-Type-Options header.  
+- **Business Impact:** Increases risk of XSS and other attacks.  
+- **OWASP Reference:** [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)  
+- **Recommendation & Prevention Strategy:**  
+  - Add `X-Content-Type-Options: nosniff` to all responses.
 
 ### 10. Information Disclosure - Suspicious Comments
-- **Severity:** Informational  
-- **Count:** 7  
-- **Description:** Comments in client-side code may reveal sensitive logic.  
-- **Recommendation:** Remove all sensitive comments from production code.
+- **Severity:** Info  
+- **CWE ID:** CWE-615  
+- **WASC ID:** WASC-13  
+- **Description:** Suspicious or sensitive comments in client-side code (such as JavaScript files) may reveal information about application logic, hidden features, or security mechanisms. Attackers can analyze these comments to discover vulnerabilities, bypass controls, or exploit undocumented functionality.  
+- **Affected URLs:** `https://ifisonline.iium.edu.my/travellingadmin/assets/af19f097/yii.js` and other JS assets.  
+- **Business Impact:** Attackers may gain insight into application logic, discover hidden endpoints, or identify weak security controls, increasing the risk of targeted attacks.  
+- **OWASP Reference:** [OWASP Top 10: Security Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)  
+- **Recommendation & Prevention Strategy:**  
+  - Remove all comments from production code that may reveal sensitive information or implementation details.  
+  - Review and sanitize code before deployment to ensure no internal notes, TODOs, or debug information remain.  
+  - Use automated tools to scan for and flag suspicious comments in source files.  
+  - Educate developers about the risks of leaving sensitive comments in client-side code.
 
 ### 11. Modern Web Application
-- **Severity:** Informational  
-- **Count:** 3  
-- **Description:** Detected use of modern JS frameworks.  
-- **Recommendation:** Ensure frameworks are kept up to date and securely configured.
+- **Severity:** Info  
+- **Description:** Detected use of modern JS frameworks (e.g., React, Angular, Vue).  
+- **Affected URLs:** Various application endpoints.  
+- **Business Impact:** Outdated or misconfigured frameworks may introduce vulnerabilities.  
+- **OWASP Reference:** [OWASP Top 10: A06 Vulnerable and Outdated Components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)  
+- **Recommendation & Prevention Strategy:**  
+  - Ensure frameworks are kept up to date and securely configured.  
+  - Monitor for security advisories related to used frameworks.
 
 ### 12. Re-examine Cache-control Directives
-- **Severity:** Informational  
-- **Count:** 3  
+- **Severity:** Info  
+- **CWE ID:** CWE-525  
+- **WASC ID:** WASC-13  
 - **Description:** Cache-control headers may be misconfigured, risking sensitive data exposure.  
-- **Recommendation:** Review and configure cache-control headers appropriately.
+- **Affected URLs:** Endpoints with weak or missing cache-control headers.  
+- **Business Impact:** Sensitive data may be stored in browser or intermediary caches.  
+- **OWASP Reference:** [OWASP Top 10: Security Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)  
+- **Recommendation & Prevention Strategy:**  
+  - Review and configure cache-control headers appropriately.
 
 ### 13. Retrieved from Cache
-- **Severity:** Informational  
-- **Count:** 2  
+- **Severity:** Info  
+- **CWE ID:** CWE-525  
+- **WASC ID:** WASC-13  
 - **Description:** Resources retrieved from browser cache may not reflect latest security updates.  
-- **Recommendation:** Use cache-busting techniques and review cache settings.
+- **Affected URLs:** Static assets and API responses.  
+- **Business Impact:** Users may receive outdated or insecure content.  
+- **OWASP Reference:** [OWASP Top 10: Security Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)  
+- **Recommendation & Prevention Strategy:**  
+  - Use cache-busting techniques and review cache settings.
 
 ### 14. User Agent Fuzzer
-- **Severity:** Informational  
-- **Count:** 12  
-- **Description:** Application responded to unusual user agents, which may indicate inconsistent behavior.  
-- **Recommendation:** Ensure consistent security controls regardless of user agent.
+- **Severity:** Info  
+- **Description:** Application responded to unusual user agents, which may indicate inconsistent behavior or lack of input validation.  
+- **Affected URLs:** Multiple endpoints tested with various user agents.  
+- **Business Impact:** Inconsistent security controls may be bypassed by attackers using custom user agents.  
+- **OWASP Reference:** [OWASP Testing Guide: User Agent Testing](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/01-Fingerprint_Web_Server)  
+- **Recommendation & Prevention Strategy:**  
+  - Ensure consistent security controls regardless of user agent.  
+  - Validate and sanitize all user input, including headers.
+
+---
+## Prevention & Recommendations
+
+### Prioritized Action Plan
+
+1. **Immediate Remediation (Within 1 week):**
+   - **Add Security Headers:**  
+     - Implement a strict Content-Security-Policy (CSP) header to restrict sources of scripts, styles, images, and other resources to trusted domains only.  
+     - Add the X-Frame-Options header (`DENY` or `SAMEORIGIN`) to prevent clickjacking.  
+     - Add the X-Content-Type-Options header (`nosniff`) to prevent MIME-sniffing attacks.
+   - **Restrict CORS:**  
+     - Configure CORS to allow only trusted domains and remove `Access-Control-Allow-Origin: *` unless absolutely necessary.
+   - **Sanitize Client-Side Code:**  
+     - Remove all sensitive comments and debug information from production JavaScript and HTML files.
+   - **CSRF Protection:**  
+     - Implement anti-CSRF tokens in all forms that perform state-changing operations and set cookies with the `SameSite` attribute.
+
+2. **Short-Term (Within 1 month):**
+   - **Enable HSTS:**  
+     - Configure the web server to include the Strict-Transport-Security (HSTS) header in all HTTPS responses.
+   - **Suppress Server Version Information:**  
+     - Remove or genericize the `Server` HTTP header to prevent version disclosure.
+   - **Error Handling:**  
+     - Display only generic error messages to users and log detailed errors server-side for authorized personnel.
+   - **Review Cache-Control:**  
+     - Set appropriate cache-control headers to prevent sensitive data from being cached by browsers or intermediaries.
+   - **Update and Secure Frameworks:**  
+     - Ensure all frameworks and third-party libraries are up to date and securely configured.
+
+3. **Ongoing:**
+   - **Regular Security Scans:**  
+     - Conduct regular automated and manual security assessments to identify new vulnerabilities.
+   - **Developer Training:**  
+     - Provide ongoing security training for developers and administrators.
+   - **Patch Management:**  
+     - Maintain a process for timely patching and updating of all software components and dependencies.
+   - **Session Management:**  
+     - Ensure session tokens are transmitted securely, not exposed in URLs or client-side scripts, and implement session expiration.
+   - **Monitor Authentication Endpoints:**  
+     - Implement account lockout, rate limiting, and monitor for suspicious activity.
+---
+## Appendices
+
+### Appendix A: Scan Settings
+
+- **Tool Used:** OWASP ZAP (Zed Attack Proxy)
+- **Scan Profile:** Standard
+- **Scan Date:** 2025-06-28
+- **Scan Duration:** 1 hour 15 minutes
+- **Scope:** All accessible URLs of the Travelling Admin Portal
+- **Authentication:** None (public endpoints only)
+- **Crawling Method:** Automated spider and AJAX spider
 
 ---
 
+### Appendix B: Vulnerability Summary Table
+
+| Risk Level   | # Issues | Example Vulnerability                        | Recommendation                                   |
+|--------------|----------|----------------------------------------------|--------------------------------------------------|
+| Critical     | 0        | N/A                                          | N/A                                              |
+| High         | 0        | N/A                                          | N/A                                              |
+| Medium       | 3        | CSP Header Not Set, CORS, Clickjacking       | Add CSP, restrict CORS, add X-Frame-Options      |
+| Low          | 6        | HSTS, Server Version, JS Inclusion, Timestamps, etc. | Enable HSTS, suppress server version, review JS  |
+| Info         | 5        | Suspicious Comments, Cache, User Agent Fuzzer, etc.   | Remove comments, review cache, consistent controls|
+
+---
+
+### Appendix C: Screenshots & Evidence
+
+- **Figure 1:** ZAP Scan Summary Screenshot  
+  ![ZAP Scan Summary](https://github.com/user-attachments/assets/3c0e9c4a-e587-4c55-bd28-983e1d457da7)
+
+- **Figure 2:** Application Error Disclosure Evidence  
+  _Screenshot showing error message with file path or stack trace (see attached evidence)._
+
+- **Additional Evidence:**  
+  - [2025-05-24-ZAP-Report-TravellingAdminpage.html](2025-05-24-ZAP-Report-TravellingAdminpage.html) (full raw ZAP report)
+
+---
+
+### Appendix D: References
+
+1. [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)
+2. [ZAP by Checkmarx](https://www.zaproxy.org/)
+3. [OWASP Top 10: A05 Security Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)
+4. [RFC 6797: HTTP Strict Transport Security (HSTS)](https://tools.ietf.org/html/rfc6797)
+5. [CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)
+6. [Mozilla Web Security Guidelines](https://infosec.mozilla.org/guidelines/web_security)
+7. [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
+8. [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
 
 ---
